@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
+    tools:context=".activites.profile">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="306dp"
+        android:layout_height="391dp"
+        android:background="#B3263132"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.148">
+
+        <TextView
+            android:id="@+id/TxtNick"
+            android:layout_width="146dp"
+            android:layout_height="28dp"
+            android:background="#609599"
+            android:fontFamily="@font/fuentetitulo"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Nombre Usuario"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.48000002" />
+
+        <TextView
+            android:id="@+id/txtNumAvent"
+            android:layout_width="68dp"
+            android:layout_height="46dp"
+            android:background="#609599"
+            android:fontFamily="@font/fuentetitulo"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.81"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.692" />
+
+        <TextView
+            android:id="@+id/txtnumPjs"
+            android:layout_width="68dp"
+            android:layout_height="46dp"
+            android:background="#609599"
+            android:fontFamily="@font/fuentetitulo"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.81"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.892" />
+
+        <TextView
+            android:id="@+id/txtAvent"
+            android:layout_width="116dp"
+            android:layout_height="46dp"
+            android:background="#609599"
+            android:fontFamily="@font/fuentetitulo"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Aventuras Jugadas"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.692" />
+
+        <TextView
+            android:id="@+id/txtPjs"
+            android:layout_width="116dp"
+            android:layout_height="46dp"
+            android:background="#609599"
+            android:fontFamily="@font/fuentetitulo"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Personajes Creados"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.892" />
+
+        <ImageView
+            android:id="@+id/imagenPerfil"
+            android:layout_width="168dp"
+            android:layout_height="146dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.073"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="122dp"
+        android:layout_height="44dp"
+        android:background="#609599"
+        android:fontFamily="@font/fuentetitulo"
+        android:text="Volver "
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.851" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/grupoMenu"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/btnInicio"
+            android:icon="@drawable/home"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/btnPerfil"
+            android:icon="@drawable/profile"
+            android:title="Perfil" />
+        <item
+            android:id="@+id/btnAventuras"
+            android:icon="@drawable/libro"
+            android:title="Campañas" />
+        <item
+            android:id="@+id/btnPersonajes"
+            android:icon="@drawable/detective"
+            android:title="Personajes" />
+    </group>
+</menu>

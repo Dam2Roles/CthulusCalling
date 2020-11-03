@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">CthulhusCalling</string>
+    <string name="Titulo">La llamada de</string>
+    <string name="Titulo2">Cthulhu</string>
+    <string name="Registro">Registro</string>
+    <string name="TxtRegis">REGISTRARSE</string>
+    <string name="TxtInic">INICIO DE SESIÓN</string>
+    <string name="Inicio">Iniciar sesion</string>
+    <string name="guest">INGRESAR COMO INVITADO</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="Confirmación">Confirmar Contraseña</string>
+    <string name="email">Email</string>
+    <string name="nick">Nombre de Usuario</string>
+    <string name="registrarse">REGISTRARSE</string>
+    <string name="title_activity_postlogin">postlogin</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

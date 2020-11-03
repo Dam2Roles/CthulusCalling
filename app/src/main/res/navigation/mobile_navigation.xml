@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/btnInicio">
+
+    <fragment
+        android:id="@+id/btnInicio"
+        android:name="com.example.llamadacthulhu.InicioFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_inicio" />
+
+    <fragment
+        android:id="@+id/btnPerfil"
+        android:name="com.example.llamadacthulhu.ui.home.ProfileFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_profile">
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/btnAventuras"
+        android:name="com.example.llamadacthulhu.ui.gallery.AventurasFragment"
+        android:label="Campañas" />
+
+    <fragment
+        android:id="@+id/btnPersonajes"
+        android:name="com.example.llamadacthulhu.ui.slideshow.PersonajesFragment"
+        android:label="Personajes"
+        tools:layout="@layout/fragment_personajes" />
+
+</navigation>

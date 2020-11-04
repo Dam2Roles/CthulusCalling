@@ -1,5 +1,7 @@
 package com.example.llamadacthulhu;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,28 +12,27 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.llamadacthulhu.adapters.campaniaadapter;
+import com.example.llamadacthulhu.api.InterfaceApi;
+import com.example.llamadacthulhu.api.RetrofitClientInstance;
 import com.example.llamadacthulhu.model.Campania;
+
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Retrofit;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragment_aventuras#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class fragment_aventuras extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    ListView listView;
+    ArrayList<Campania> dataSet;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    ListView lista;
-    ArrayList<Campania> listaCamp;
-
 
     public fragment_aventuras() {
         // Required empty public constructor
@@ -67,13 +68,29 @@ public class fragment_aventuras extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Campania camp1 = new Campania("Agua de coco","Es monster blanco", "Buenos días");
-        listaCamp.add(camp1);
-        View root = inflater.inflate(R.layout.itemlistaaventura, container, true);
-        lista=(ListView)root.findViewById(R.id.listaavent);
-        campaniaadapter adapter = new campaniaadapter(listaCamp, lista.getContext() );
-        lista.setAdapter(adapter);
 
-        return root;
+        // Inflate the layout for this fragment
+
+        return inflater.inflate(R.layout.fragment_aventuras, container, false);
     }
+
+    @Override
+    public void onActivityCreated(Bundle state){
+        super.onActivityCreated(state);
+        listView = (ListView)getView().findViewById(R.id.listview);
+
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("DatosAUsar", Context.MODE_PRIVATE);
+        String nombreusu = preferences.getString("NombreUsuario","No hay información");
+
+        Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
+        final InterfaceApi api = retrofit.create(InterfaceApi.class);
+        Call<Campania> call = api.getCampaniasUsuario(nombreusu);
+
+
+
+        campaniaadapter adapter = new campaniaadapter(dataSet,getActivity().getApplicationContext());
+        listView.setAdapter(adapter);
+
+    }
+
 }

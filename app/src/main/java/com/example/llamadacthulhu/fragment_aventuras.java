@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.llamadacthulhu.adapters.campaniaadapter;
 import com.example.llamadacthulhu.api.InterfaceApi;
@@ -18,8 +19,11 @@ import com.example.llamadacthulhu.model.Campania;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 
@@ -77,14 +81,30 @@ public class fragment_aventuras extends Fragment {
     @Override
     public void onActivityCreated(Bundle state){
         super.onActivityCreated(state);
-        listView = (ListView)getView().findViewById(R.id.listview);
+        listView = (ListView)getView().findViewById(R.id.listaavent);
 
         SharedPreferences preferences = this.getActivity().getSharedPreferences("DatosAUsar", Context.MODE_PRIVATE);
         String nombreusu = preferences.getString("NombreUsuario","No hay información");
 
         Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
         final InterfaceApi api = retrofit.create(InterfaceApi.class);
-        Call<Campania> call = api.getCampaniasUsuario(nombreusu);
+        Call<List<Campania>> call = api.getCampaniasUsuario(nombreusu);
+
+        call.enqueue(new Callback<List<Campania>>() {
+            @Override
+            public void onResponse(Call<List<Campania>> call, Response<List<Campania>> response) {
+                if(response.isSuccessful()){
+                    for(Campania c : response.body()) {
+                        dataSet.add(c);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Campania>> call, Throwable t) {
+                Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
 
 
 

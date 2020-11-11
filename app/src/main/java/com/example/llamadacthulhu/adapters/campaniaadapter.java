@@ -10,11 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.llamadacthulhu.R;
+import com.example.llamadacthulhu.api.InterfaceApi;
+import com.example.llamadacthulhu.api.RetrofitClientInstance;
 import com.example.llamadacthulhu.model.Campania;
-
-import org.w3c.dom.Text;
+import com.example.llamadacthulhu.model.Usuario;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
 
 public class campaniaadapter extends ArrayAdapter<Campania> {
 
@@ -22,18 +26,16 @@ public class campaniaadapter extends ArrayAdapter<Campania> {
     Context mContext;
     private int lastPosition = -1;
 
-
     public static class ViewHolder {
         TextView txtNombre;
         TextView txtUsu;
         TextView txtDesc;
 
-
     }
 
-    public campaniaadapter(ArrayList<Campania> dataSet, Context context){
-        super(context, R.layout.itemlistaaventura, dataSet);
-        this.dataSet = dataSet;
+    public campaniaadapter(ArrayList<Campania> data, Context context){
+        super(context, R.layout.itemlistaaventura, data);
+        this.dataSet = data;
         this.mContext = context;
     }
 
@@ -50,7 +52,6 @@ public class campaniaadapter extends ArrayAdapter<Campania> {
             ConvertView = inflater.inflate(R.layout.itemlistaaventura,parent, false);
 
 
-
             result=ConvertView;
 
             ConvertView.setTag(viewHolder);
@@ -63,7 +64,6 @@ public class campaniaadapter extends ArrayAdapter<Campania> {
         lastPosition = position;
 
         return ConvertView;
-
     }
 
 }

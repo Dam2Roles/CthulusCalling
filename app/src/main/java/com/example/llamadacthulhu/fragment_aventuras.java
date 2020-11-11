@@ -1,5 +1,7 @@
 package com.example.llamadacthulhu;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,11 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.llamadacthulhu.adapters.campaniaadapter;
+import com.example.llamadacthulhu.api.InterfaceApi;
+import com.example.llamadacthulhu.api.RetrofitClientInstance;
 import com.example.llamadacthulhu.model.Campania;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 /**
@@ -67,13 +78,43 @@ public class fragment_aventuras extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Campania camp1 = new Campania("Agua de coco","Es monster blanco", "Buenos días");
-        listaCamp.add(camp1);
-        View root = inflater.inflate(R.layout.itemlistaaventura, container, true);
-        lista=(ListView)root.findViewById(R.id.listaavent);
-        campaniaadapter adapter = new campaniaadapter(listaCamp, lista.getContext() );
+        // Inflate the layout for this fragment
+
+        return inflater.inflate(R.layout.fragment_aventuras, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle state){
+        super.onActivityCreated(state);
+        lista = (ListView)getView().findViewById(R.id.listaavent);
+
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("DatosAUsar", Context.MODE_PRIVATE);
+        String nombreusu = preferences.getString("NombreUsuario","No hay información");
+
+        Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
+        final InterfaceApi api = retrofit.create(InterfaceApi.class);
+        Call<List<Campania>> call = api.getCampaniasUsuario(nombreusu);
+
+        call.enqueue(new Callback<List<Campania>>() {
+            @Override
+            public void onResponse(Call<List<Campania>> call, Response<List<Campania>> response) {
+                if(response.isSuccessful()){
+                    for(Campania c : response.body()) {
+                        listaCamp.add(c);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Campania>> call, Throwable t) {
+                Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+        campaniaadapter adapter = new campaniaadapter(listaCamp,getActivity().getApplicationContext());
         lista.setAdapter(adapter);
 
-        return root;
     }
 }

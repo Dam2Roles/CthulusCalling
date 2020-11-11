@@ -35,25 +35,76 @@
 
         <TextView
             android:id="@+id/txtTipoUsu"
-            android:layout_width="97dp"
-            android:layout_height="51dp"
+            android:layout_width="86dp"
+            android:layout_height="33dp"
             android:background="#609599"
             android:fontFamily="@font/fuentetitulo"
             android:gravity="center"
             android:padding="4dp"
             android:text="Tipo Usuario"
-            android:textSize="18sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintHorizontal_bias="0.072"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.661" />
+            app:layout_constraintVertical_bias="0.656" />
+
+        <TextView
+            android:id="@+id/txtTipoSexo"
+            android:layout_width="88dp"
+            android:layout_height="25dp"
+            android:background="#609599"
+            android:fontFamily="@font/fuentetitulo"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Sexo"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.073"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.765" />
+
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="88dp"
+            android:layout_height="25dp"
+            android:background="#609599"
+            android:fontFamily="@font/fuentetitulo"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Email"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.863" />
+
+        <TextView
+            android:id="@+id/txtFechanac"
+            android:layout_width="88dp"
+            android:layout_height="25dp"
+            android:background="#609599"
+            android:fontFamily="@font/fuentetitulo"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Fecha nacimiento"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.073"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.956" />
 
         <Spinner
             android:id="@+id/spinnerTipo"
-            android:layout_width="145dp"
-            android:layout_height="50dp"
+            android:layout_width="155dp"
+            android:layout_height="35dp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -62,6 +113,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.659" />
+
+        <Spinner
+            android:id="@+id/spinnerSexo"
+            android:layout_width="155dp"
+            android:layout_height="35dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.781"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.758" />
 
         <ImageView
             android:id="@+id/imagenPerfil"
@@ -74,6 +138,30 @@
             app:layout_constraintVertical_bias="0.114"
             app:srcCompat="@drawable/fondo"
             tools:srcCompat="@drawable/fondo" />
+
+        <TextView
+            android:id="@+id/txtEm"
+            android:layout_width="155dp"
+            android:layout_height="23dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.781"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.858" />
+
+        <TextView
+            android:id="@+id/txtNaci"
+            android:layout_width="155dp"
+            android:layout_height="23dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.781"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.951" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

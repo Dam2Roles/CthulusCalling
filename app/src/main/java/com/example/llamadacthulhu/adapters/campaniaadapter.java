@@ -25,7 +25,7 @@ public class campaniaadapter extends ArrayAdapter<Campania> {
 
     public static class ViewHolder {
         TextView txtNombre;
-        TextView txtCreador;
+        TextView txtUsu;
         TextView txtDesc;
 
 

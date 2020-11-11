@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -39,13 +40,14 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    private void guardarnick(){
+    /*private void guardarnick(){
         nombreusu = etNick.getText().toString();
-        SharedPreferences datosImportantes = getSharedPreferences("DatosAUsar", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = datosImportantes.edit();
-        editor.putString("NombreUsuario", nombreusu);
+        SharedPreferences pref;
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("NombreUsuario",nombreusu);
         editor.commit();
-    }
+    }*/
 
     private void loginUsuario(){
 
@@ -80,7 +82,6 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btnLogin){
-            guardarnick();
             loginUsuario();
         }
     }

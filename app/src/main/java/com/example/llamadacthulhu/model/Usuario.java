@@ -14,13 +14,20 @@ public class Usuario {
     Date fechaNacimiento;
     String sexo;
     String tipoPerfil;
+    byte[] imagen;
 
-    public Usuario(String nombre, String contraseña, String email, String sexo, String tipoPerfil) {
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public Usuario(String nombre, String contraseña, String email, String sexo, String tipoPerfil, byte[] imagen) {
         this.nombre = nombre;
         this.contrasenia = contraseña;
         this.email = email;
         this.sexo = sexo;
         this.tipoPerfil = tipoPerfil;
+        this.imagen = imagen;
+
     }
 
     public Usuario() {

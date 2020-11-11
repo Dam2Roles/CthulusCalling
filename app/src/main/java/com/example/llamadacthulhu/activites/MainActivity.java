@@ -19,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        btnRegistro = (Button) findViewById(R.id.btnRegistro);
-        btnLogin = (Button) findViewById(R.id.btnInicio);
-        btnInvitado = (Button) findViewById(R.id.btnInvitado);
     }
 
     public void onRegistro(View w) {

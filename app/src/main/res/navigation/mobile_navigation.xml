@@ -22,8 +22,9 @@
 
     <fragment
         android:id="@+id/btnAventuras"
-        android:name="com.example.llamadacthulhu.ui.gallery.AventurasFragment"
-        android:label="Campañas" />
+        android:name="com.example.llamadacthulhu.fragment_aventuras"
+        android:label="Campañas"
+        tools:layout="@layout/fragment_aventuras" />
 
     <fragment
         android:id="@+id/btnPersonajes"

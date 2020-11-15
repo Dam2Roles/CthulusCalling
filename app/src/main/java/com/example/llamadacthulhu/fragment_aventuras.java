@@ -20,11 +20,12 @@ import com.example.llamadacthulhu.model.Campania;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import android.util.Log;
 
 
 public class fragment_aventuras extends Fragment {
@@ -33,11 +34,14 @@ public class fragment_aventuras extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     ListView listView;
-    ArrayList<Campania> dataSet;
+    List<Campania> dataSet;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    String nombreusu;
+    List<Campania> lista;
 
+    private static final String TAG ="FragmentAventuras";
     public fragment_aventuras() {
         // Required empty public constructor
     }
@@ -72,24 +76,22 @@ public class fragment_aventuras extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Campania camp1 = new Campania("Agua de coco","Es monster blanco", "Buenos días");
-        listaCamp.add(camp1);
-        View root = inflater.inflate(R.layout.itemlistaaventura, container, true);
-        lista=(ListView)root.findViewById(R.id.listaavent);
-        campaniaadapter adapter = new campaniaadapter(listaCamp, lista.getContext() );
-        lista.setAdapter(adapter);
+    Log.v(TAG,"Creando e inflando vista");
 
-        return root;
+        return inflater.inflate(R.layout.fragment_aventuras,container,false);
+
     }
 
     @Override
     public void onActivityCreated(Bundle state){
         super.onActivityCreated(state);
+        dataSet = new ArrayList<Campania>();
         listView = (ListView)getView().findViewById(R.id.listaavent);
 
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("DatosAUsar", Context.MODE_PRIVATE);
-        String nombreusu = preferences.getString("NombreUsuario","No hay información");
-
+        SharedPreferences pref = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+         nombreusu = pref.getString("NombreUsuario","");
+        //nombreusu = "Sergio"; //Hardcoded nombre usuario, hay que mirar que pasa con las preferencias.
+        Log.v(TAG,"Realizando conexión");
         Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
         final InterfaceApi api = retrofit.create(InterfaceApi.class);
         Call<List<Campania>> call = api.getCampaniasUsuario(nombreusu);
@@ -97,10 +99,16 @@ public class fragment_aventuras extends Fragment {
         call.enqueue(new Callback<List<Campania>>() {
             @Override
             public void onResponse(Call<List<Campania>> call, Response<List<Campania>> response) {
+                lista = response.body();
                 if(response.isSuccessful()){
+                    Log.v(TAG,"Añado al dataSet y muestro la lista "+lista.get(0).getNombreCampania());
                     for(Campania c : response.body()) {
+                        Log.v(TAG,"Añado las campañas "+c.getNombreCampania());
+                        //c.setNombre(c.getNombre()); //hardcoded nombre, hay que mirar por qué no lee bien.
                         dataSet.add(c);
                     }
+                    campaniaadapter adapter = new campaniaadapter(dataSet,getActivity().getApplicationContext());
+                    listView.setAdapter(adapter);
                 }
             }
 
@@ -112,8 +120,7 @@ public class fragment_aventuras extends Fragment {
 
 
 
-        campaniaadapter adapter = new campaniaadapter(dataSet,getActivity().getApplicationContext());
-        listView.setAdapter(adapter);
+
 
     }
 

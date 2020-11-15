@@ -7,12 +7,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Campania {
-    String nombre;
+    String nombreCampania;
     String creador;
     String descripcion;
 
-    public Campania(String nombre, String creador, String descripcion) {
-        this.nombre = nombre;
+    public Campania(String nombreCampania, String creador, String descripcion) {
+        this.nombreCampania = nombreCampania;
         this.creador = creador;
         this.descripcion = descripcion;
     }
@@ -21,7 +21,7 @@ public class Campania {
     }
     public Campania(JSONObject object){
         try {
-            this.nombre = object.getString("nombre_camp");
+            this.nombreCampania = object.getString("nombreCampania");
             this.creador = object.getString("creador");
             this.descripcion = object.getString("descripcion");
         } catch (JSONException e) {
@@ -40,12 +40,12 @@ public class Campania {
         return listacamps;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreCampania() {
+        return nombreCampania;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreCampania(String nombreCampania) {
+        this.nombreCampania = nombreCampania;
     }
 
     public String getCreador() {
@@ -66,8 +66,8 @@ public class Campania {
 
     @Override
     public String toString() {
-        return "Campaña{" +
-                "nombre='" + nombre + '\'' +
+        return "Campania{" +
+                "nombreCampania='" + nombreCampania + '\'' +
                 ", creador='" + creador + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 '}';

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ import com.example.llamadacthulhu.activites.postlogin;
 import com.example.llamadacthulhu.api.InterfaceApi;
 import com.example.llamadacthulhu.api.RetrofitClientInstance;
 import com.example.llamadacthulhu.model.Usuario;
+import android.util.Log;
 
 import java.util.Date;
 
@@ -51,6 +53,7 @@ public class ProfileFragment extends Fragment {
     byte[] arrayBiteImg;
     Bitmap bmpImg;
 
+    private static final String TAG ="ProfileFragment";
 
 
 
@@ -59,6 +62,7 @@ public class ProfileFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_profile, container, false);
+
         btnVolver2 = root.findViewById(R.id.btnVolver2);
         dropdown = root.findViewById(R.id.spinnerTipo);
         dropdownSexo = root.findViewById(R.id.spinnerSexo);
@@ -72,7 +76,7 @@ public class ProfileFragment extends Fragment {
         dropdown.setAdapter(adapterSpinner);
         ArrayAdapter<String> adapterSpinnerSexo = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, itemsSpinnerSexo);
         dropdownSexo.setAdapter(adapterSpinnerSexo);
-
+        recogerInfoUsuario();
 
 
         btnVolver2.setOnClickListener(new View.OnClickListener() {
@@ -99,15 +103,16 @@ public class ProfileFragment extends Fragment {
     private void recogerInfoUsuario(){
         SharedPreferences pref = this.getActivity().getSharedPreferences("pref",Context.MODE_PRIVATE);
         nombreUsuario = pref.getString("NombreUsuario","Default");
-
+        Log.v(TAG,"Inicio conexión");
         Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
         final InterfaceApi api = retrofit.create(InterfaceApi.class);
         Call<Usuario>call = api.getInfoUsuario(pref.getString("NombreUsuario","Sergio"));
-
         call.enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                Log.v(TAG,"No devuelvo nada");
                 if(response.isSuccessful()){
+                    Log.v(TAG,"Devuelvo los datos");
                     sexo = response.body().getSexo();
                     email = response.body().getEmail();
                     fecNac = response.body().getFechaNacimiento();
@@ -118,8 +123,6 @@ public class ProfileFragment extends Fragment {
                     arrayBiteImg = response.body().getImagen();
                     bmpImg = BitmapFactory.decodeByteArray(arrayBiteImg,0,arrayBiteImg.length);
                     imgPerfil.setImageBitmap(Bitmap.createScaledBitmap(bmpImg,imgPerfil.getWidth(),imgPerfil.getHeight(),false));
-
-
                 }
             }
 

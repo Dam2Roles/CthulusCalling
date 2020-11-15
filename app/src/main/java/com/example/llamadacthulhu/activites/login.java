@@ -40,14 +40,14 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    /*private void guardarnick(){
+    private void guardarnick(){
         nombreusu = etNick.getText().toString();
         SharedPreferences pref;
-        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        pref = getSharedPreferences("pref",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("NombreUsuario",nombreusu);
         editor.commit();
-    }*/
+    }
 
     private void loginUsuario(){
 
@@ -82,6 +82,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btnLogin){
+            guardarnick();
             loginUsuario();
         }
     }

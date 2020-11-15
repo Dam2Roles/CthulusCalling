@@ -1,6 +1,7 @@
 package com.example.llamadacthulhu.ui.gallery;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +24,13 @@ public class AventurasFragment extends Fragment {
 
     ListView lista;
     ArrayList<Campania> listaCamp;
+    private static final String TAG ="AventurasFragment";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         listaCamp = new ArrayList<Campania>();
         View root = inflater.inflate(R.layout.fragment_aventuras, container, false);
-
+        Log.v(TAG,"Inflando vista mal");
         return root;
     }
 }

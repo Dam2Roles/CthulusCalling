@@ -8,6 +8,7 @@
     tools:context=".ui.slideshow.PersonajesFragment">
 
     <ListView
+        android:id="@+id/listaPers"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

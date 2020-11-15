@@ -7,7 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="141dp"
+        android:layout_height="333dp"
+        android:background="#B3263132"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -17,38 +18,83 @@
 
         <TextView
             android:id="@+id/txtTitulo"
-            android:layout_width="156dp"
+            android:layout_width="208dp"
             android:layout_height="25dp"
-            android:text="aaa"
+            android:fontFamily="@font/bebasneueregular"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.062"
+            app:layout_constraintHorizontal_bias="0.079"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.137" />
+            app:layout_constraintVertical_bias="0.168" />
+
+        <TextView
+            android:id="@+id/txtTit"
+            android:layout_width="156dp"
+            android:layout_height="25dp"
+            android:fontFamily="@font/fuentetitulo"
+            android:text="Titulo"
+            android:textSize="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.087" />
+
+        <TextView
+            android:id="@+id/txtNomCreador"
+            android:layout_width="139dp"
+            android:layout_height="24dp"
+            android:fontFamily="@font/fuentetitulo"
+            android:text="Creador"
+            android:textSize="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.059"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.294" />
 
         <TextView
             android:id="@+id/txtCreador"
             android:layout_width="139dp"
             android:layout_height="24dp"
-            android:text="bananda"
+            android:fontFamily="@font/bebasneueregular"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.058"
+            app:layout_constraintHorizontal_bias="0.062"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.41" />
+            app:layout_constraintVertical_bias="0.372" />
+
+        <TextView
+            android:id="@+id/txtDescri"
+            android:layout_width="139dp"
+            android:layout_height="24dp"
+            android:fontFamily="@font/fuentetitulo"
+            android:text="Descripcion"
+            android:textSize="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.062"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.466" />
 
         <TextView
             android:id="@+id/txtDesc"
-            android:layout_width="347dp"
-            android:layout_height="64dp"
-            android:text="Monroy toplane"
+            android:layout_width="370dp"
+            android:layout_height="140dp"
+            android:fontFamily="@font/bebasneueregular"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintHorizontal_bias="0.425"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.935" />
+            app:layout_constraintVertical_bias="0.87" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,7 @@
 package com.example.llamadacthulhu.api;
 
+import com.example.llamadacthulhu.model.Campania;
+import com.example.llamadacthulhu.model.Personaje;
 import com.example.llamadacthulhu.model.Usuario;
 
 import java.util.List;
@@ -20,5 +22,16 @@ public interface InterfaceApi {
    @POST("usuarios")
     Call<Usuario>crearUsuario(@Body Usuario usuario);
 
+   @GET("usuarios/{nombre_usu}")
+   Call<Usuario>recibirNombreImagen(@Body Usuario usuario);
+
+   @GET("usuarios/obtenerUsuario/{nombre_usu}")
+   Call<Usuario>getInfoUsuario(@Path("nombre_usu")String nombreUsuario);
+
+   @GET("campania/dameCampanias/{nombre_usu}" )
+   Call<List<Campania>>getCampaniasUsuario(@Path("nombre_usu")String nombreUsuario);
+
+   @GET("/usuarios/damePersonajes/{nombre_usu}" )
+   Call<List<Personaje>>getPersonajesUsuario(@Path("nombre_usu")String nombreUsuario);
 
 }

@@ -13,6 +13,7 @@ import com.example.llamadacthulhu.InicioFragment;
 import com.example.llamadacthulhu.R;
 import com.example.llamadacthulhu.api.InterfaceApi;
 import com.example.llamadacthulhu.api.RetrofitClientInstance;
+import com.example.llamadacthulhu.fragment_aventuras;
 import com.example.llamadacthulhu.ui.gallery.AventurasFragment;
 import com.example.llamadacthulhu.ui.home.ProfileFragment;
 import com.example.llamadacthulhu.ui.slideshow.PersonajesFragment;
@@ -97,7 +98,7 @@ public class postlogin extends AppCompatActivity  {
             case R.id.aventuras:
 
                 fm = getSupportFragmentManager();
-                Fragment fragmentA = new AventurasFragment();
+                Fragment fragmentA = new fragment_aventuras();
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentA).commit();
                 return true;
             case R.id.personajes:

@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 
@@ -31,7 +32,13 @@ public interface InterfaceApi {
    @GET("campania/dameCampanias/{nombre_usu}" )
    Call<List<Campania>>getCampaniasUsuario(@Path("nombre_usu")String nombreUsuario);
 
-   @GET("/usuarios/damePersonajes/{nombre_usu}" )
-   Call<List<Personaje>>getPersonajesUsuario(@Path("nombre_usu")String nombreUsuario);
+   @GET("usuarios/damePersonajes/{nombre_usuario}")
+   Call<List<Personaje>>getPersonajesUsuario(@Path("nombre_usuario")String nombreUsuario);
+
+   @PUT("usuarios/actualizarUsuario")
+    Call<Usuario>actualizarInfoUsuario(@Body Usuario usuario);
+
+   @GET("campania/damePersonajesCampania/{nombre_camp}")
+    Call<List<Personaje>>getNombrePersonajesCampania(@Path("nombre_camp")String nombreCampania);
 
 }

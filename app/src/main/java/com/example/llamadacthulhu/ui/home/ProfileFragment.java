@@ -31,27 +31,46 @@ import com.example.llamadacthulhu.activites.postlogin;
 import com.example.llamadacthulhu.api.InterfaceApi;
 import com.example.llamadacthulhu.api.RetrofitClientInstance;
 import com.example.llamadacthulhu.model.Usuario;
+import com.google.gson.Gson;
+
 import android.util.Log;
 
-import java.util.Date;
+import java.io.ByteArrayOutputStream;
+import java.sql.Array;
+import java.text.SimpleDateFormat;
+import java.sql.Date;
+
 
 public class ProfileFragment extends Fragment {
 
+    //Datos interfaz
     private View root;
     Button btnVolver2;
+    Button btnModificar;
     Spinner dropdown;
     Spinner dropdownSexo;
     TextView txtEmail;
     TextView txtFec;
     TextView txtnick;
+
+    //Datos para la interfaz
     String nombreUsuario;
     String sexo;
     String email;
     Date fecNac;
+    String cont;
     String tipoUsuario;
     ImageView imgPerfil;
     byte[] arrayBiteImg;
     Bitmap bmpImg;
+
+    //Datos de modificar el usuario
+    Usuario usuarioMod = new Usuario();
+    String tipoUsuMod;
+    String sexoMod;
+    Date fechaMod;
+    String correoMod;
+    String contMod;
 
     private static final String TAG ="ProfileFragment";
 
@@ -62,7 +81,7 @@ public class ProfileFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_profile, container, false);
-
+        btnModificar = root.findViewById(R.id.btnActualizar);
         btnVolver2 = root.findViewById(R.id.btnVolver2);
         dropdown = root.findViewById(R.id.spinnerTipo);
         dropdownSexo = root.findViewById(R.id.spinnerSexo);
@@ -77,7 +96,12 @@ public class ProfileFragment extends Fragment {
         ArrayAdapter<String> adapterSpinnerSexo = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, itemsSpinnerSexo);
         dropdownSexo.setAdapter(adapterSpinnerSexo);
         recogerInfoUsuario();
-
+        btnModificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actualizarInfoUsuario();
+            }
+        });
 
         btnVolver2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,11 +139,18 @@ public class ProfileFragment extends Fragment {
                     Log.v(TAG,"Devuelvo los datos");
                     sexo = response.body().getSexo();
                     email = response.body().getEmail();
-                    fecNac = response.body().getFechaNacimiento();
+                    fecNac = new Date(response.body().getFechaNacimiento().getTime());
                     tipoUsuario = response.body().getTipoPerfil();
+                    cont = response.body().getContraseña();
                     txtEmail.setText(email);
                     txtFec.setText(fecNac.toString());
                     txtnick.setText(nombreUsuario);
+                    ArrayAdapter myAdapterTipoPerfil = (ArrayAdapter)dropdown.getAdapter();
+                    ArrayAdapter myAdapterSexo = (ArrayAdapter)dropdownSexo.getAdapter();
+                    int spinnerPositionTipoPerfil = myAdapterTipoPerfil.getPosition(tipoUsuario);
+                    int spinnerPosotionSexo = myAdapterSexo.getPosition(sexo);
+                    dropdown.setSelection(spinnerPositionTipoPerfil);
+                    dropdownSexo.setSelection(spinnerPosotionSexo);
                     arrayBiteImg = response.body().getImagen();
                     bmpImg = BitmapFactory.decodeByteArray(arrayBiteImg,0,arrayBiteImg.length);
                     imgPerfil.setImageBitmap(Bitmap.createScaledBitmap(bmpImg,imgPerfil.getWidth(),imgPerfil.getHeight(),false));
@@ -134,6 +165,46 @@ public class ProfileFragment extends Fragment {
 
 
 
+    }
+    private void actualizarInfoUsuario(){
+        SharedPreferences pref = this.getActivity().getSharedPreferences("pref",Context.MODE_PRIVATE);
+        nombreUsuario = pref.getString("NombreUsuario","Default");
+        tipoUsuMod = dropdown.getSelectedItem().toString();
+        sexoMod = dropdownSexo.getSelectedItem().toString();
+/*        Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.id.imagenPerfil);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG,100,stream);
+        byte[] byteArrayImg = stream.toByteArray();
+        fechaMod = (Date) txtFec.getText();
+        correoMod = txtEmail.getText().toString();
+        contMod = cont;*/
+        usuarioMod.setNombre(nombreUsuario);
+        usuarioMod.setTipoPerfil(tipoUsuMod);
+        usuarioMod.setSexo(sexoMod);
+        Log.v(TAG,"Iniciando conexión de actualización");
+        Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
+        final InterfaceApi api = retrofit.create(InterfaceApi.class);
+        Call<Usuario>call = api.actualizarInfoUsuario(usuarioMod);
+        Log.v(TAG,"Envio el usuario "+usuarioMod);
+        call.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                Log.v(TAG, response.message());
+                if(response.isSuccessful()){
+                    Log.v(TAG,"Envío los datos del usuario "+usuarioMod);
+                    Toast.makeText(getActivity(),"Perfil actualizado correctamente",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity(),"Error al actualizar",Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+                Toast.makeText(getActivity(),"Perfil actualizado correctamente",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     }

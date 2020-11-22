@@ -20,13 +20,18 @@ public class Usuario {
         return imagen;
     }
 
-    public Usuario(String nombre, String contraseña, String email, String sexo, String tipoPerfil, byte[] imagen) {
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+
+    public Usuario(String nombre, String contraseña, String email, String sexo, String tipoPerfil, byte[] imagen, Date fechaNacimiento) {
         this.nombre = nombre;
         this.contrasenia = contraseña;
         this.email = email;
         this.sexo = sexo;
         this.tipoPerfil = tipoPerfil;
         this.imagen = imagen;
+        this.fechaNacimiento = fechaNacimiento;
 
     }
 
@@ -49,6 +54,7 @@ public class Usuario {
         this.contrasenia = contrasenia;
         this.email = email;
     }
+
 
     public static ArrayList<Usuario> fromJSON(JSONArray objects){
         ArrayList<Usuario> listausu = new ArrayList<Usuario>();

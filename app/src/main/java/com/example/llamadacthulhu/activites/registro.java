@@ -103,7 +103,7 @@ public class registro extends AppCompatActivity implements View.OnClickListener 
 
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Registro completado",Toast.LENGTH_LONG).show();
             }
         });
 

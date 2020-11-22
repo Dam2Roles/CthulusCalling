@@ -1,20 +1,18 @@
 package com.example.llamadacthulhu.activites;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.llamadacthulhu.InicioFragment;
 import com.example.llamadacthulhu.R;
 import com.example.llamadacthulhu.api.InterfaceApi;
 import com.example.llamadacthulhu.api.RetrofitClientInstance;
 import com.example.llamadacthulhu.fragment_aventuras;
-import com.example.llamadacthulhu.ui.gallery.AventurasFragment;
 import com.example.llamadacthulhu.ui.home.ProfileFragment;
 import com.example.llamadacthulhu.ui.slideshow.PersonajesFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -35,7 +33,7 @@ public class postlogin extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
     private FragmentManager fm;
-    private TextView welcomeuser;
+
 
 
 
@@ -46,10 +44,6 @@ public class postlogin extends AppCompatActivity  {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //SharedPreferences misPreferencias = getSharedPreferences("DatosAUsar", Context.MODE_PRIVATE);
-        //String nusuario = misPreferencias.getString("NombreUsuario", "nombreusu");
-        //welcomeuser = findViewById(R.id.welcomeuser);
-        //welcomeuser.setText("Bienvenido "+nusuario);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);

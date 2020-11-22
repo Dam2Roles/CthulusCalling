@@ -35,9 +35,9 @@ import retrofit2.Retrofit;
 
 public class PersonajesFragment extends Fragment {
 
-    private PersonajesViewModel slideshowViewModel;
+    List<Personaje> lista;
     ListView listView;
-    ArrayList<Personaje> dataSet;
+    List<Personaje> dataSet;
     String nombreusu;
     private static final String TAG ="PersonajesFragment";
 
@@ -50,26 +50,32 @@ public class PersonajesFragment extends Fragment {
         super.onActivityCreated(state);
         dataSet = new ArrayList<Personaje>();
         listView = (ListView)getView().findViewById(R.id.listaPers);
-        SharedPreferences preferences = this.getContext().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         nombreusu = preferences.getString("NombreUsuario","");
-        Log.v(TAG,"Realizando conexión");
+
+
         Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
         final InterfaceApi api = retrofit.create(InterfaceApi.class);
         Call<List<Personaje>> call = api.getPersonajesUsuario(nombreusu);
+        Log.v(TAG,"Realizando conexión");
 
         call.enqueue(new Callback<List<Personaje>>() {
             @Override
             public void onResponse(Call<List<Personaje>> call, Response<List<Personaje>> response) {
-                Log.v(TAG,"No devuelvo nada");
+                Log.v(TAG,"No devuelvo nada "+response.errorBody());
+                lista = response.body();
+
                 if(response.isSuccessful()){
-                    Log.v(TAG,"Añado al dataSet y muestro la lista");
+                    Log.v(TAG,"Añado al dataSet y muestro la lista"+lista.get(0).getUsuario());
                     for(Personaje p : response.body()) {
                         Log.v(TAG,"Añado los personajes "+p);
-                        p.setNombre("Las máscaras de Nyaratoleph"); //hardcoded nombre, hay que mirar por qué no lee bien.
+                        //p.setNombre("Las máscaras de Nyaratoleph"); //hardcoded nombre, hay que mirar por qué no lee bien.
                         dataSet.add(p);
                     }
                     pjadapter adapter = new pjadapter(dataSet,getActivity().getApplicationContext());
                     listView.setAdapter(adapter);
+                } else {
+                    Log.v(TAG, response.message());
                 }
             }
 

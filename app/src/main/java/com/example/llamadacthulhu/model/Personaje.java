@@ -8,9 +8,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Personaje {
+    int idPersonaje;
     String usuario;
     String nombre;
-    String campaña;
+    String campania;
     String lugarNacimiento;
     String profesion;
     int edad;
@@ -27,14 +28,15 @@ public class Personaje {
     int suerte;
     int conocimiento;
 
-    public Personaje(String nombre, String lugarNacimiento, String profesion, int edad, int fuerza, int constitucion, int tamaño, int destreza, int apariencia, int cordura, int inteligencia, int poder, int educacion, int idea, int suerte, int conocimiento) {
+    public Personaje(int idPersonaje, String nombre, String lugarNacimiento, String profesion, int edad, int fuerza, int constitucion, int tamanio, int destreza, int apariencia, int cordura, int inteligencia, int poder, int educacion, int idea, int suerte, int conocimiento) {
+        this.idPersonaje = idPersonaje;
         this.nombre = nombre;
         this.lugarNacimiento = lugarNacimiento;
         this.profesion = profesion;
         this.edad = edad;
         this.fuerza = fuerza;
         this.constitucion = constitucion;
-        this.tamanio = tamaño;
+        this.tamanio = tamanio;
         this.destreza = destreza;
         this.apariencia = apariencia;
         this.cordura = cordura;
@@ -45,10 +47,14 @@ public class Personaje {
         this.suerte = suerte;
         this.conocimiento = conocimiento;
     }
+
     public Personaje(JSONObject object){
         try {
+            this.usuario = object.getString("usuario");
+            this.campania= object.getString("campania");
+            this.idPersonaje = object.getInt("idPersonaje");
             this.nombre = object.getString("nombre");
-            this.lugarNacimiento = object.getString("lugar_nac");
+            this.lugarNacimiento = object.getString("lugarNacimiento");
             this.profesion = object.getString("profesion");
             this.edad = object.getInt("edad");
             this.fuerza = object.getInt("fuerza");
@@ -99,13 +105,6 @@ public class Personaje {
         this.nombre = nombre;
     }
 
-    public String getCampaña() {
-        return campaña;
-    }
-
-    public void setCampaña(String campaña) {
-        this.campaña = campaña;
-    }
 
     public String getLugarNacimiento() {
         return lugarNacimiento;
@@ -227,12 +226,28 @@ public class Personaje {
         this.conocimiento = conocimiento;
     }
 
+    public String getCampania() {
+        return campania;
+    }
+
+    public void setCampania(String campania) {
+        this.campania = campania;
+    }
+
+    public int getTamanio() {
+        return tamanio;
+    }
+
+    public void setTamanio(int tamanio) {
+        this.tamanio = tamanio;
+    }
+
     @Override
     public String toString() {
         return "Personaje{" +
                 "usuario='" + usuario + '\'' +
                 ", nombre='" + nombre + '\'' +
-                ", campaña='" + campaña + '\'' +
+                ", campania='" + campania + '\'' +
                 ", lugarNacimiento='" + lugarNacimiento + '\'' +
                 ", profesion='" + profesion + '\'' +
                 ", edad=" + edad +
